@@ -1,0 +1,96 @@
+<div class="text-end">
+    <button type="button" [hidden]="isSignIn" (click)="signInPopup()" class="btn btn-outline-primary me-2">Login</button>
+    <button type="button" [hidden]="!isSignIn" (click)="logout()" class="btn btn-outline-primary me-2">Logout</button>
+    <button type="button" [hidden]="isSignIn" (click)="signUpPopup()" class="btn btn-primary">Sign-up</button>
+</div>
+<div [hidden]="hideSigninPopup" class="modal-dialog modal-dialog-centered signIn" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Login Panel</h5>
+          <button type="button" class="btn-close" (click)="closePopup()" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
+            <div class="modal-body">
+                <p>Valid credentials login: eve.holt@reqres.in pass: cityslicka <i class="fa fa-clone hand" (click)="populateLogin()" aria-hidden="true"></i></p>
+                <div class="input-group mb-3">
+                    <span  class="input-group-text" for="login">Login: </span>
+                    <input class="form-control" placeholder="login@is.email" id="login" type="text" formControlName="login">
+                    <div *ngIf="loginForm.get('login')?.invalid && 
+                                loginForm.get('login')?.errors && 
+                                (loginForm.get('login')?.dirty || loginForm.get('login')?.touched)">
+                        <small class="text-danger" *ngIf="loginForm.get('login')?.hasError('required')">
+                            This field is required.
+                        </small>
+                        <small class="text-danger" *ngIf="loginForm.get('login')?.hasError('email')">
+                            Wrong email format
+                        </small>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <span  class="input-group-text"  for="password">Password: </span>
+                    <input class="form-control" id="password" type="text" formControlName="password">
+                </div>
+                <p class="text-danger">{{errorMessage}}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="closePopup()" data-bs-dismiss="modal">Close</button>
+                <button type="submit" [disabled]="!loginForm.valid" class="btn btn-primary">Login</button>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+<div [hidden]="hideSignupPopup" class="modal-dialog modal-dialog-centered signIn" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Registration Panel</h5>
+          <button type="button" class="btn-close" (click)="closePopup()" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form [formGroup]="registrationForm" (ngSubmit)="register()">
+            <div class="modal-body">
+                <p>Valid data login: eve.holt@reqres.in pass: pistol <i class="fa fa-clone hand" (click)="populateRegistration()" aria-hidden="true"></i></p>
+                <div class="input-group mb-3">
+                    <span  class="input-group-text" for="login">Login: </span>
+                    <input class="form-control" placeholder="login@is.email" id="login" type="text" formControlName="login">
+                    <div *ngIf="registrationForm.get('login')?.invalid && 
+                                registrationForm.get('login')?.errors && 
+                                (registrationForm.get('login')?.dirty || registrationForm.get('login')?.touched)">
+                        <small class="text-danger" *ngIf="registrationForm.get('login')?.hasError('required')">
+                            This field is required.
+                        </small>
+                        <small class="text-danger" *ngIf="registrationForm.get('login')?.hasError('email')">
+                            Wrong email format
+                        </small>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <span  class="input-group-text"  for="password">Password: </span>
+                    <input class="form-control" id="password" type="text" formControlName="password">
+                </div>
+                <div formGroupName="pointless">
+                    <h2>Pointless</h2>
+                    <span  class="input-group-text" for="first-name">First Name: </span>
+                    <input  class="form-control" id="first-name" type="text" formControlName="name">
+                
+                    <span  class="input-group-text" for="last-name">Last Name: </span>
+                    <input  class="form-control" id="last-name" type="text" formControlName="surname">
+
+                    <span  class="input-group-text" for="postcode">Post Code: </span>
+                    <input   class="form-control" id="postcode" type="postcode" formControlName="postcode" postcodeAsyncValidator>
+                    <small class="text-danger" *ngIf="registrationForm.get('pointless.postcode')?.hasError('custom')">
+                        custom error
+                    </small>
+                </div>
+                <p class="text-danger">{{errorMessage}}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="closePopup()" data-bs-dismiss="modal">Close</button>
+                <button type="submit" [disabled]="!registrationForm.valid" class="btn btn-primary">Register</button>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>

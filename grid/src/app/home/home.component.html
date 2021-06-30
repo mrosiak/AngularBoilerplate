@@ -1,0 +1,24 @@
+<p>Home: Lazy loading of Resources over rxjs</p>
+<div class="container">
+    <p>Seconds: {{number$ | async}} Resource Size: {{resources.length}}, Active: {{activeResource}}, Loading Next resource:{{loading | percent}}.</p>
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item" [class.active]="activeResource-1==i" *ngFor="let data of resources, index as i">
+                <div class="card" [ngStyle]="{'background-color': data.color}">
+                    <div class="card-body">
+                      <h5 class="card-title"><span class="badge bg-secondary">{{i}}</span>{{data.name}}</h5>
+                      <p class="card-text"><span class="badge bg-secondary">Year {{data.year}}</span>{{data.pantone_value}}</p>
+                    </div>
+                  </div>
+            </div>
+        </div>
+        <button (click)="prev()" class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button (click)="next()" class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+</div>

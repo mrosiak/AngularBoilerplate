@@ -1,0 +1,10 @@
+.carousel {
+    width: 25%;
+}
+.card{
+    width: 38rem;
+}
+.card-body{
+    margin-left: 5rem;
+    margin-right: 5rem;
+}

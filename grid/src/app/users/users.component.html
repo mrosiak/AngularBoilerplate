@@ -1,0 +1,34 @@
+
+<p>Paginated table of users puled from api</p>
+<div class="container">
+<p *ngIf="hasUsers; else noUsers">Users loaded successfuly: {{ ErroeMessage }}</p>
+<ng-template #noUsers>
+    <p>No users were loaded: {{ ErroeMessage }}</p>
+</ng-template>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Email</th>
+        <th scope="col">Avatar</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of users ; trackBy: trackItem">
+            <th scope="row">{{user.id}}</th>
+            <td>{{user.first_name}}</td>
+            <td>{{user.last_name}}</td>
+            <td>{{user.email}}</td>
+            <td><img src='{{user.avatar}}' alt='{{user.first_name+user.last_name}}'  class="img-fluid img-thumbnail rounded-circle"></td>
+        </tr>      
+    </tbody>
+  </table>
+  <p>page: {{page}}, 
+    per page: {{per_page}}, 
+    total: {{total}}, 
+    total pages: {{total_pages}}</p>
+    <app-pagination    [page]="page"     [per_page]="per_page"     [total]="total" [totalPages]="total_pages"    [pg_href]="pgHref"></app-pagination>
+</div>
+<router-outlet></router-outlet>

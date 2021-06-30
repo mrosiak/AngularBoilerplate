@@ -1,0 +1,53 @@
+<div class="container">
+    <p>Hi, {{currentUser.first_name}}</p>
+    <form [formGroup]="profileForm" class="row g-3"   (ngSubmit)="update()">
+        <div class="col-md-6">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control" id="email" formControlName="email">
+        </div>
+        <div class="col-md-6">
+          <label for="id" class="form-label">Id</label>
+          <input type="text" class="form-control" id="id" formControlName="id">
+        </div>
+        <div class="col-6">
+          <label for="name" class="form-label">name</label>
+          <input type="text" class="form-control" id="name" placeholder="name" formControlName="name">
+        </div>
+        <div class="col-6">
+          <label for="job" class="form-label">job</label>
+          <input type="text" class="form-control" id="job" placeholder="job" formControlName="job">
+        </div>
+        <div class="col-6">
+          <label for="firstname" class="form-label">firstname</label>
+          <input type="text" class="form-control" id="firstname" placeholder="" formControlName="firstname">
+        </div>
+        <div class="col-md-6">
+          <label for="surname" class="form-label">surname</label>
+          <input type="text" class="form-control" id="surname" formControlName="surname">
+        </div>
+        <div class="col-md-4">
+          <label for="role" class="form-label">Role</label>
+          <select id="role" class="form-select custom-select" formControlName="role" (change)="changeRole($event)">
+            <option value="" disabled>Choose Role</option>
+            <option *ngFor="let roleName of Roles" [value]="roleName.key">{{roleName.name}}</option>
+          </select>
+        </div>
+        <div class="col-md-2">
+          <label for="avatar" class="form-label">Avatar</label>
+          <img src="{{profileForm.get('avatar')?.value}}">
+          <input type="text" class="form-control" id="avatar" formControlName="avatar">
+        </div>
+        <div class="col-12">
+          <div class="form-check">
+            <label class="form-check-label" for="updatedAt">
+               Updated Date
+            </label>
+            <input type="text" class="form-control" id="updatedAt" formControlName="updatedAt">
+          </div>
+        </div>
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary">Update</button>
+        </div>
+      </form>
+</div>
+

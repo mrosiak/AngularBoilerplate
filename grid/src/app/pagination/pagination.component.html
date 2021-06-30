@@ -1,0 +1,6 @@
+<p>pagination works!</p>
+<nav aria-label="..." [hidden]="hasPages">
+    <ul class="pagination pagination-lg">
+      <li  class="page-item" [class.active]="page==index+1" *repeat="totalPages;let index"><a class="page-link"  href="{{pg_href}}{{index+1}}">{{index+1}}</a></li>
+    </ul>
+  </nav>
